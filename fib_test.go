@@ -3,8 +3,8 @@ package fib
 import "testing"
 
 var fibTests = []struct {
-	n        int
-	expected int
+	n        int // input
+	expected int // expected result
 }{
 	{1, 1},
 	{2, 1},
