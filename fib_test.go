@@ -39,14 +39,14 @@ func BenchmarkFib40(b *testing.B) { benchmarkFib(40, b) }
 
 var result int
 
-func BenchmarkFibComplete(i int, b *testing.B) {
+func BenchmarkFibComplete(b *testing.B) {
 	var r int
 	for n := 0; n < b.N; n++ {
 		// always record the result of Fib to prevent
 		// the compiler eliminating the function call.
-		r = Fib(i)
+		r = Fib(10)
 	}
 	// always store the result to a package level variable
 	// so the compiler cannot eliminate the Benchmark itself.
-	result = int
+	result = r
 }
