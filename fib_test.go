@@ -1,6 +1,9 @@
 package fib
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 var fibTests = []struct {
 	n        int // input
@@ -24,18 +27,16 @@ func TestFib(t *testing.T) {
 	}
 }
 
-func benchmarkFib(i int, b *testing.B) {
-	for n := 0; n < b.N; n++ {
-		Fib(i)
+func BenchmarkFibVV(b *testing.B) {
+	benchSizes := []int{1, 2, 3, 10, 20, 40}
+	for _, i := range benchSizes {
+		b.Run(fmt.Sprint(i), func(b *testing.B) {
+			for n := 0; n < b.N; n++ {
+				Fib(i)
+			}
+		})
 	}
 }
-
-func BenchmarkFib1(b *testing.B)  { benchmarkFib(1, b) }
-func BenchmarkFib2(b *testing.B)  { benchmarkFib(2, b) }
-func BenchmarkFib3(b *testing.B)  { benchmarkFib(3, b) }
-func BenchmarkFib10(b *testing.B) { benchmarkFib(10, b) }
-func BenchmarkFib20(b *testing.B) { benchmarkFib(20, b) }
-func BenchmarkFib40(b *testing.B) { benchmarkFib(40, b) }
 
 var result int
 
